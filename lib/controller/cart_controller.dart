@@ -96,4 +96,10 @@ class CartController extends GetxService {
       }
     }
   }
+
+  List<CartModel> getAllCartItems() {
+    return Items.entries.map((e) {
+      return e.value;
+    }).toList();
+  }
 }
