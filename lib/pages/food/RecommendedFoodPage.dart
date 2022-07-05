@@ -1,6 +1,7 @@
 import 'package:deliverapp/applicationRoutes/RouteHelper.dart';
 import 'package:deliverapp/controller/popular_product_controller.dart';
 import 'package:deliverapp/data/reposetory/recommended_product_repo.dart';
+import 'package:deliverapp/pages/CartPage.dart';
 import 'package:deliverapp/utilities/AppColors.dart';
 import 'package:deliverapp/utilities/Dimensions.dart';
 import 'package:deliverapp/widgets/AppIcon.dart';
@@ -41,8 +42,13 @@ class RecommendedFoodPage extends StatelessWidget {
                       onTap: () => (Get.toNamed(RouteHelper.initial)),
                       child: AppIcon(icon: Icons.clear)),
                   Stack(children: [
-                    AppIcon(
-                      icon: Icons.shopping_cart_outlined,
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(CartPage());
+                      },
+                      child: AppIcon(
+                        icon: Icons.shopping_cart_outlined,
+                      ),
                     ),
                     Positioned(
                       right: Dimensions.Width10,

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class AppIcon extends StatelessWidget {
   late final IconData icon;
   late final double? size;
+  late final double? Iconsize;
   late final Color? color;
   late final Color? CustomBackgroundColor;
 
@@ -15,7 +16,8 @@ class AppIcon extends StatelessWidget {
       {required this.icon,
       this.size = 40,
       this.color = const Color(0xFF756d54),
-      this.CustomBackgroundColor = Colors.white});
+      this.CustomBackgroundColor = Colors.white,
+      this.Iconsize});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class AppIcon extends StatelessWidget {
           color: CustomBackgroundColor),
       child: Icon(
         icon,
-        size: Dimensions.iconSize16,
+        size: Iconsize,
         color: color,
       ),
     );

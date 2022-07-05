@@ -2,9 +2,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:deliverapp/applicationRoutes/RouteHelper.dart';
+import 'package:deliverapp/controller/cart_controller.dart';
 import 'package:deliverapp/controller/recommended_product_controller.dart';
 import 'package:deliverapp/data/Api.dart';
 import 'package:deliverapp/helper/Dependencies.dart';
+import 'package:deliverapp/pages/CartPage.dart';
 import 'package:deliverapp/pages/food/PopularFoodDetails.dart';
 import 'package:deliverapp/pages/food/RecommendedFoodPage.dart';
 import 'package:deliverapp/pages/home/FoodPage.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
     Get.find<RecommendedProductController>().GetRecommendedProductlist();
     return GetMaterialApp(
       title: 'Flutter Demo',
-      home: MainFoodPage(),
+      home: CartPage(),
       debugShowCheckedModeBanner: false,
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
