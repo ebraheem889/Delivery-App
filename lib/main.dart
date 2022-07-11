@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:deliverapp/applicationRoutes/RouteHelper.dart';
 import 'package:deliverapp/controller/cart_controller.dart';
@@ -28,11 +27,12 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartData();
     Get.find<PopularProductController>().getpopularproductlist();
     Get.find<RecommendedProductController>().GetRecommendedProductlist();
     return GetMaterialApp(
-      title: 'Flutter Demo',
-      home: CartPage(),
+      title: 'DeliveryApp',
+      home: MainFoodPage(),
       debugShowCheckedModeBanner: false,
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,

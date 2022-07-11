@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:deliverapp/applicationRoutes/RouteHelper.dart';
 import 'package:deliverapp/controller/popular_product_controller.dart';
 import 'package:deliverapp/controller/recommended_product_controller.dart';
@@ -39,7 +37,7 @@ class _FoodPageState extends State<FoodPage> {
     });
   }
 
-  // we use it so that we let the memory know that we are not need these page or the things we put inside this function
+  // we use it so that we let the memory know that we are not need this page or the things we put inside this function
   // it's a better for the performance
   @override
   void dispose() {
@@ -109,101 +107,105 @@ class _FoodPageState extends State<FoodPage> {
       // popular Lists
       GetBuilder<RecommendedProductController>(
           builder: (recommendedProductController) {
-        return ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount:
-                recommendedProductController.recommendedproductlist.length,
-            itemBuilder: (ctx, index) {
-              return GestureDetector(
-                onTap: () =>
-                    (Get.toNamed(RouteHelper.getrecommendedFoodRoute(index))),
-                child: Container(
-                    child: Row(
-                  children: [
-                    // container for recommended product img
-                    recommendedProductController.isLoaded
-                        ? Container(
-                            margin: EdgeInsets.only(
-                                left: Dimensions.Height20,
-                                bottom: Dimensions.Height10),
-                            height: Dimensions.Heigh120,
-                            width: Dimensions.Heigh120,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.Height30),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(AppConstants.BASE_URL +
-                                    "/uploads/" +
-                                    recommendedProductController
-                                        .recommendedproductlist[index].img!),
-                              ),
+        return recommendedProductController.isLoaded
+            ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount:
+                    recommendedProductController.recommendedproductlist.length,
+                itemBuilder: (ctx, index) {
+                  return GestureDetector(
+                    onTap: () => (Get.toNamed(
+                        RouteHelper.getrecommendedFoodRoute(index, "home"))),
+                    child: Container(
+                        child: Row(
+                      children: [
+                        // container for recommended product img
+
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: Dimensions.Height20,
+                              bottom: Dimensions.Height10),
+                          height: Dimensions.Heigh120,
+                          width: Dimensions.Heigh120,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.Height30),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(AppConstants.BASE_URL +
+                                  "/uploads/" +
+                                  recommendedProductController
+                                      .recommendedproductlist[index].img!),
                             ),
-                          )
-                        : const CircularProgressIndicator(
-                            color: AppColors.mainColor,
                           ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      height: Dimensions.Heigh120,
-                      width: Dimensions.Width200 + 100,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(Dimensions.Height30),
-                              bottomRight:
-                                  Radius.circular(Dimensions.Height30))),
-                      // column for right cart and it contains name and description
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          BigText(
-                            text: recommendedProductController
-                                .recommendedproductlist[index].name!,
-                            color: Colors.black,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          height: Dimensions.Heigh120,
+                          width: Dimensions.Width200 + 100,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topRight:
+                                      Radius.circular(Dimensions.Height30),
+                                  bottomRight:
+                                      Radius.circular(Dimensions.Height30))),
+                          // column for right cart and it contains name and description
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BigText(
+                                text: recommendedProductController
+                                    .recommendedproductlist[index].name!,
+                                color: Colors.black,
+                              ),
+                              SizedBox(
+                                height: Dimensions.Height10,
+                              ),
+                              SmallText(
+                                text: recommendedProductController
+                                    .recommendedproductlist[index].description!,
+                                color: AppColors.textColor,
+                                maxLinesToShow: 1,
+                              ),
+                              SizedBox(
+                                height: Dimensions.Height10,
+                              ),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    IconAndTextWidet(
+                                      icon: Icons.circle,
+                                      text: "Normal",
+                                      Iconcolor: Colors.amber,
+                                      Textcolor: AppColors.textColor,
+                                    ),
+                                    IconAndTextWidet(
+                                      icon: Icons.location_on,
+                                      text: "1.7 km",
+                                      Iconcolor: Colors.blue,
+                                      Textcolor: AppColors.textColor,
+                                    ),
+                                    IconAndTextWidet(
+                                      icon: Icons.access_time_rounded,
+                                      text: "55min",
+                                      Iconcolor: Colors.red,
+                                      Textcolor: AppColors.textColor,
+                                    ),
+                                  ]),
+                            ],
                           ),
-                          SizedBox(
-                            height: Dimensions.Height10,
-                          ),
-                          SmallText(
-                            text: recommendedProductController
-                                .recommendedproductlist[index].description!,
-                            color: AppColors.textColor,
-                            maxLinesToShow: 1,
-                          ),
-                          SizedBox(
-                            height: Dimensions.Height10,
-                          ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                IconAndTextWidet(
-                                  icon: Icons.circle,
-                                  text: "Normal",
-                                  Iconcolor: Colors.amber,
-                                  Textcolor: AppColors.textColor,
-                                ),
-                                IconAndTextWidet(
-                                  icon: Icons.location_on,
-                                  text: "1.7 km",
-                                  Iconcolor: Colors.blue,
-                                  Textcolor: AppColors.textColor,
-                                ),
-                                IconAndTextWidet(
-                                  icon: Icons.access_time_rounded,
-                                  text: "55min",
-                                  Iconcolor: Colors.red,
-                                  Textcolor: AppColors.textColor,
-                                ),
-                              ]),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
+                        )
+                      ],
+                    )),
+                  );
+                })
+            : const CircularProgressIndicator(
+                color: AppColors.mainColor,
+                backgroundColor: Colors.white,
               );
-            });
       }),
     ]);
   }
@@ -211,7 +213,7 @@ class _FoodPageState extends State<FoodPage> {
   Widget _buildPageItem(
       int position, PopularProductController popularproductcontroller) {
     return GestureDetector(
-      onTap: () => {Get.toNamed(RouteHelper.getPopularFoodRoute(position))},
+      onTap: () => {Get.toNamed(RouteHelper.getPopularFoodRoute(position, ""))},
       child: Stack(
         children: [
           Container(

@@ -18,7 +18,9 @@ import '../../widgets/CustomBottomNavigationBar.dart';
 
 class RecommendedFoodPage extends StatelessWidget {
   final int PageId;
-  RecommendedFoodPage({Key? key, required this.PageId}) : super(key: key);
+  String Page;
+  RecommendedFoodPage({Key? key, required this.PageId, required this.Page})
+      : super(key: key);
 
   // var Product = Get.find<RecommendedProductController>().recommendedproductlist[PageId];
 
@@ -39,12 +41,18 @@ class RecommendedFoodPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                      onTap: () => (Get.toNamed(RouteHelper.initial)),
+                      onTap: () {
+                        if (Page == "CartPage") {
+                          Get.toNamed(RouteHelper.getrCartPageRoute());
+                        } else {
+                          Get.toNamed(RouteHelper.getInitialRoute());
+                        }
+                      },
                       child: AppIcon(icon: Icons.clear)),
                   Stack(children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to(CartPage());
+                        Get.toNamed(RouteHelper.cartPage);
                       },
                       child: AppIcon(
                         icon: Icons.shopping_cart_outlined,
