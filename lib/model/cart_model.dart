@@ -1,3 +1,5 @@
+import 'package:deliverapp/model/popuar_product_model.dart';
+
 class CartModel {
   int? id;
   String? name;
@@ -9,6 +11,7 @@ class CartModel {
   bool? isExists;
   String? img;
   int? typeId;
+  ProductModel? product;
 
   CartModel(
       {this.id,
@@ -20,7 +23,8 @@ class CartModel {
       this.time,
       this.isExists,
       this.img,
-      this.typeId});
+      this.typeId,
+      this.product});
 
   CartModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,5 +37,22 @@ class CartModel {
     isExists = json['isExists'];
     img = json['img'];
     typeId = json['type_id'];
+    product = ProductModel.fromJson(json["product"]);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": this.id,
+      "name": this.name,
+      "description": this.description,
+      "price": this.price,
+      "stars": this.stars,
+      "quantity": this.quantity,
+      "time": this.time,
+      "isExists": this.isExists,
+      "img": this.img,
+      "typeId": this.typeId,
+      "product": this.product!.toJson()
+    };
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:deliverapp/utilities/AppColors.dart';
 import 'package:deliverapp/utilities/Dimensions.dart';
 import 'package:flutter/cupertino.dart';
